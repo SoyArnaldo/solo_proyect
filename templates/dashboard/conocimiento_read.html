@@ -1,0 +1,37 @@
+{% extends "form.html" %}
+{% load static %}
+{% block form %}
+{% include "includes/messages.html" %}	
+	<form>
+		<div class="form-floating" style="width: 400px;">
+			{% for object in obj %}
+			<p class="form-control my-1 text-start"  name="conocimiento" id="floatingTextarea2" style="height: 180px;" readonly>
+				{{object.conocimiento }}
+			</p>
+			<div>
+				<p>
+					Publicado
+					{{object.public|date:"d F, Y"}}
+				</p>
+			</div>
+			<div class="d-flex justify-content-evenly">
+				<div class="btn btn-danger">
+					<a href="{% url 'main:conocimiento_delete' object.id %} "  style="text-decoration: none; color: #fff;">
+						Eliminar
+					</a>
+				</div>
+				<div class="btn btn-primary">
+					<a href="{% url 'main:conocimiento_update' object.id %}"  style="text-decoration: none; color: #fff;">
+						Actualizar
+					</a>
+				</div>
+			</div>
+			{% endfor %}
+		</div>
+		<div class="mt-1 btn btn-light d-flex justify-content-evenly">
+			<a href="{% url 'main:home'%}"  style="text-decoration: none; color: #000;">
+				Dashboard
+			</a>
+		</div>	
+	</form>		
+{% endblock %}

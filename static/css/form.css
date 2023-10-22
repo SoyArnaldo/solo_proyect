@@ -1,0 +1,168 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Sora', sans-serif;
+	list-style: none;
+}
+
+:root {
+	--text-color: #fff;
+	--bg-color: #111013;
+	--main-color: #0939AF;
+	--other-color: #1c201c;
+
+	--big-font: 4.5rem;
+	--h2-font:2.6rem;
+	--p-font: 1.1rem;
+}
+
+
+body {
+	min-height: 100vh;
+	background-color: var(--bg-color);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 20px;
+}
+
+#messages {
+	position: absolute;
+	top: 40px;
+	right: 0;
+	display: inline;
+	z-index: 100;
+}
+
+.form-popup {
+	background-color: var(--main-color);
+	width: 500px;
+	height: 600px;
+	border-radius: 6px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.form-popup .form-box {
+	display: flex;
+}
+
+.form-box h2 {
+	text-align: center;
+	margin-bottom: 30px;
+}
+
+.form-box .from-content {
+	width: 100%;
+	padding: 35px;
+}
+
+form .input-field {
+	height: 50px;
+	width: 95%;
+	margin-top: 20px;
+	position: relative;
+}
+
+form .input-field input{
+	width: 100%;
+	height: 100%;
+	margin-left: 10px;
+	outline: none;
+	font-size: 0.95rem;
+	padding: 0 15px;
+	border-radius: 3px;
+	border: 1px solid #717171;
+}
+
+.form-box a {
+	color: var(--text-color);
+	text-decoration: none;
+}
+
+.form-box a:hover {
+	text-decoration: underline;
+}
+
+.form-box .forgot-pass {
+	display: inline-flex;
+	margin-top: 14px;
+	font-size: 0.95rem;
+}
+
+form button {
+	width: 100%;
+	outline: none;
+	border: none;
+	padding: 14px 0;
+	background: rgba(16, 47, 124, 0.735);
+	transition: all 0.2s ease;
+	color: var(--text-color);
+	font-size: 1rem;
+	margin: 25px 0;
+	border-radius: 3px;
+	font-weight: 600;
+	cursor: pointer;
+}
+
+form button:hover {
+	background-color: rgba(6, 27, 124, 0.735);
+}
+
+
+.form-box .bottom-link {
+	text-align: center;
+}
+
+form .input-field  label{
+	position: absolute;
+	top: 0;
+	left: 15px;
+	color: #717171;
+	transition: 0.2 ease;
+}
+
+form .image-content {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	padding: 10px 14px;
+	position: relative;
+}
+
+form .image-content .card-image {
+	position: relative;
+	border-radius: 50%;
+	padding: 3px;
+	width: 150px;
+	height: 150px;
+}
+
+form .image-content .card-image .card-img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	border-radius: 50%;
+	border: 4px solid  rgb(10, 10, 110);
+}
+
+
+@media (max-width: 992px) {
+
+}
+
+@media (max-width: 768px) {
+	.form-popup {
+		width: 95%;
+	}
+
+	.form-box .form-details {
+		display: none;
+	}
+
+	.form-box .from-content {
+		padding: 30px 20px;
+	}
+}

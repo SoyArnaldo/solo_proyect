@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Salud y Bienestar{% endblock %}
+
+{% block header %}
+    {% include "includes/navbar.html" %}
+{% endblock %}
+{% block content %}
+    <section class="wrapper" id="inicio">
+        <img src="{% static 'images/logo.jpg' %}"/>															
+        <div class="text-box">
+            <h1> <span>Salud y Bienestar</span> <br>están al alcance <br> de tus manos</h1>
+            <p>
+                <a href="{% url 'main:conocimiento' %}" class="btn">
+                    Aprender
+                    <i class='bx bxs-right-arrow' ></i>
+                </a>
+            </p>
+        </div>
+
+    </section>
+
+    <section class="wrapper-feed">
+        <div class="card-wrapper">
+            {% for object in obj %}
+                <div class="card mt-2">
+                    <div class="image-content">
+                        <img src="https://i.ytimg.com/vi/{{ object.link_video }}/hqdefault.jpg" width="480" height="360" alt="">
+                    </div>   
+                    <div  class="description">
+                        <p>
+                            Publicado
+                            {{object.public|date:"d F, Y"}}
+                            by: 
+                            {{object.author.first_name}}
+                        </p>
+                    </div>
+                    <div class="card-body description">
+                        <p>
+                            {{object.conocimiento}}
+                        </p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <!-- Feed -->
+    <section class="wrapper-feed">
+        <style>
+            .swiper-pagination-bullet {
+                height: 7px;
+                width: 26px;
+                background: var(--main-color);
+                border-radius: 25px;
+            }
+
+            .swiper-button-next:hover,
+            .swiper-button-prev:hover {
+                color: rgba(19, 19, 169, 0.7);
+            }
+
+            .swiper-button-next,
+            .swiper-button-prev {
+                margin: 0 0;
+                color: var(--main-color);
+                transition: color 0.3s ease;
+            }
+
+            .swiper-button-next::before,
+            .swiper-button-prev::before, 
+            .swiper-button-next::after,
+            .swiper-button-prev::after {
+                font-size: 40px;
+            }
+            @media (max-width: 768px) {
+                .slide-content {
+                    margin: 0  10px 40px;
+                }
+
+
+                .swiper-button-next,
+                .swiper-button-prev {
+                    display: none;
+                }
+            
+            }
+        </style>
+        <div class="slide-container-feed swiper">
+            <div class="line">					
+                <h3 class="line-feed">¿Personas que aportaron su conocimientos?</h3>	
+            </div>
+            <div class="slide-content">
+                <div class="card-wrapper swiper-wrapper">
+                {% for object in obj %}
+                    <div class="card swiper-slide">
+                            <div class="image-content">
+                                <span class="overlay"></span>
+                                <div class="card-image">
+                                    <img src="{{object.author.image.url}}" alt="" class="card-img">
+                                </div>
+                            </div>   
+                            <div class="card-content">
+                                <h2 class="name">{{object.author.first_name}} {{object.author.last_name}}</h2>
+                            </div>
+                    </div>    
+                {% endfor %}      
+                </div>
+            </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+        <div class="swiper-pagination"></div>
+
+    </section>
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js" defer></script>
+
+    <!-- JS -->
+    <script src="{% static 'js/progress_slide.js' %}" defer></script>
+
+{% endblock%}

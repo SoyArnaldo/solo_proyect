@@ -1,0 +1,22 @@
+{% extends "form.html" %}
+{% load static %}
+{% block form %}
+{% include "includes/messages.html" %}	
+	{% for video in videos %}
+	<form action="{% url 'main:conocimiento_create' video.video_id %}" method="post">
+			<iframe src="https://www.youtube.com/embed/{{video.video_id}}" width="420" height="310" frameborder="0" allowfullscreen></iframe>
+		{% csrf_token %}
+		<div class="form-floating" style="width: 420px;">
+			<textarea class="form-control"  name="conocimiento" id="floatingTextarea2" style="height: 150px;"></textarea>
+			<label for="floatingTextarea2">Conocimiento</label>
+		</div>
+		<button type="submit" class="my-2">Crear</button>
+		<div class="btn btn-light my-1 mx-auto" style="width: 100%;">
+			<a href="{% url 'main:conocimiento_read'%} "  style="text-decoration: none; color: #000;">Mis conocimientos</a>
+		</div>
+	</form>		
+	{% endfor %}
+{% endblock %}
+
+
+

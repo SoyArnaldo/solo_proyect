@@ -1,0 +1,20 @@
+{% extends "form.html" %}
+{% load static %}
+{% block form %}
+{% include "includes/messages.html" %}	
+	<form action="{% url 'main:conocimiento_update' object.id %}" method="post">
+		{% csrf_token %}
+			<iframe src="https://www.youtube.com/embed/{{object.link_video}}" width="420" height="310" frameborder="0" allowfullscreen></iframe>
+		<div class="form-floating" style="width: 420px;">
+			<textarea class="form-control"  name="conocimiento" id="floatingTextarea2" style="height: 150px; text-align: center;">
+			{{object.conocimiento}}
+			</textarea>
+		</div>
+		<button type="submit" class="btn btn-success my-1" style="text-decoration: none; color: #fff;">Actualizar</button>
+		<div class="btn btn-light d-flex justify-content-evenly my-1">
+			<a href="{% url 'main:home'%}"  style="text-decoration: none; color: #000;">
+				Dashboard
+			</a>
+		</div>	
+	</form>
+{% endblock %}

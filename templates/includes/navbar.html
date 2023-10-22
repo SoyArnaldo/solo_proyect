@@ -1,0 +1,40 @@
+{% load static %}
+    <a  class="logo" href="#inicio">
+        <i class='bx bx-dumbbell'></i>
+        Health Span
+    </a>
+    
+    <input type="checkbox" id="check">
+
+    <label for="check" class="icons">
+        <i class='bx bx-menu' id="menu-icon"></i>
+        <i class='bx bx-x' id="close-icon"></i>
+    </label>
+
+    <nav class="navbar">
+        <a class="" style="--i:0;" href="#inicio">Inicio</a>
+        {% if user.is_authenticated %}
+            {% if user.username %}
+                <a href="{% url 'users:profile' user.username %}">
+                    <i class='bx bxs-user'></i>
+                    {{ user.username }}
+                </a>
+            {% else %}
+                Nombre Usuario
+            {% endif %}
+            <a href="{% url 'users:signout' %}">
+                <span class="btn-log">
+                    Cerrar Sessión
+                </span>
+            </a>
+        {% else %}
+            <a href="{% url 'users:signin' %}">
+                <span class="btn-log">
+                    Iniciar Sessión
+                </span>
+            </a>            
+        {% endif %}
+    </nav>
+
+
+    <script src="{% static 'js/script.js' %}" defer></script>

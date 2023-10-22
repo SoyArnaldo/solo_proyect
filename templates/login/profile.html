@@ -1,0 +1,43 @@
+{% extends "form.html" %}
+{% load static %}
+{% block form %}
+{% include "includes/messages.html" %}		
+	<form enctype="multipart/form-data" method="post">
+		{% csrf_token %}
+		<div class="image-content">
+			<div class="card-image">
+				{% if user.username == form.instance.username %}
+					<input type="file" name="image" accept="image/*" id="id_image" hidden>
+					<label for="id_image">
+						<img src="{{ form.instance.image.url }}" alt="" style="cursor: pointer;" title="Cambiar imagen" class="card-img">
+					</label>
+				{% else %}
+					<img src="{{ form.instance.image.url }}" alt="" style="cursor: pointer;" title="Cambiar imagen" class="card-img">
+				{% endif %}
+			</div>
+		</div>
+		<div class="input-field">
+			<label for="id_username">Nombre de usuario</label>
+			<input type="text" name="username" value="{{form.instance.username}}" maxlength="50" required="" id="id_username">
+		</div>
+		<div class="input-field">
+			<label for="id_first_name">Nombre</label>
+			<input type="text" name="first_name" maxlength="50" id="id_first_name" value="{{form.instance.first_name}}">
+		</div>
+		<div class="input-field">
+			<label for="id_last_name">Apellido</label>
+			<input type="text" name="last_name" maxlength="50" id="id_last_name" value="{{form.instance.last_name}}">
+		</div>
+		<button type="submit"> Actualizar</button>
+		<div class="d-flex">
+			<div class="me-2 btn btn-danger">
+				<a  href="{% url 'users:profile_delete' form.instance.email %}" style="text-decoration: none; color: #fff;">Eliminar cuenta</a>
+			</div>
+			<div class="btn btn-light">
+				<a  href="{% url 'main:home'%}" style="text-decoration: none; color: #000;">
+					Dashboard
+				</a>
+			</div>
+		</div>
+	</form>	
+{% endblock %}
